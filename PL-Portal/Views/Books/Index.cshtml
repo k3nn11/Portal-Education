@@ -1,0 +1,78 @@
+﻿@model IEnumerable<Data.Models.Book>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+@if(Model == null || !Model.Any())
+{
+    <h2>Welcome</h2>
+    <p>No Books Available</p>
+    <p>
+        <a asp-action="Create">+Add Books</a>
+    </p>
+}
+else
+{
+    <h1>Welcome</h1>
+
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NumberOfPages)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Format)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.YearOfPublication)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IsDeleted)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NumberOfPages)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Format)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.YearOfPublication)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IsDeleted)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+}
